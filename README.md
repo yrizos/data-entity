@@ -1,4 +1,6 @@
-[![Build Status]](https://travis-ci.org/yrizos/data-object)
-
-
-[Build Status]: https://travis-ci.org/yrizos/data-object.svg?branch=master
+[![Build Status](https://img.shields.io/travis/yrizos/<project>.svg)](https://travis-ci.org/yrizos/<project>)
+[![Codacy](https://img.shields.io/codacy/<token>.svg)](https://www.codacy.com/public/yrizos/<project>)
+[![Code Climate](http://img.shields.io/codeclimate/github/yrizos/<project>.svg)](https://codeclimate.com/github/yrizos/<project>)
+[![Coverage](http://img.shields.io/codeclimate/coverage/github/yrizos/<project>.svg)](https://codeclimate.com/github/yrizos/<project>)
+[![Latest Release](http://img.shields.io/packagist/v/yrizos/<project>.svg)](https://packagist.org/packages/yrizos/<project>)
+[![License](http://img.shields.io/packagist/l/yrizos/<project>.svg)](https://packagist.org/packages/yrizos/<project>)
