@@ -10,7 +10,7 @@ abstract class Type implements TypeInterface
      * @param mixed|null $filter
      * @return mixed
      */
-    abstract function filter($value, $filter = null);
+    abstract function filter($value, $context = null);
 
     /**
      * @param $value

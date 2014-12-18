@@ -64,7 +64,7 @@ class Field implements FieldInterface
      * @param string|null $filter
      * @return mixed
      */
-    public function filter($value, $filter = null)
+    public function filter($value, $context = null)
     {
         return $this->getType()->filter($value, $filter);
     }
