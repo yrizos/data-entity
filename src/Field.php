@@ -22,7 +22,7 @@ class Field implements FieldInterface
         if (empty($name)) throw new \InvalidArgumentException("Name can't be empty.");
 
         $this->name     = $name;
-        $this->type     = Type::factory('raw');
+        $this->type = Type::factory($type);
         $this->default  = $default;
         $this->required = $required === true;
     }
@@ -66,7 +66,7 @@ class Field implements FieldInterface
      */
     public function filter($value, $context = null)
     {
-        return $this->getType()->filter($value, $filter);
+        return $this->getType()->filter($value, $context);
     }
 
     /**
@@ -76,7 +76,10 @@ class Field implements FieldInterface
     public function validate($value)
     {
         return
-            ($value === $this->getDefault())
+            (
+                $value !== null
+                && $value === $this->getDefault()
+            )
             || $this->getType()->validate($value);
     }
 
