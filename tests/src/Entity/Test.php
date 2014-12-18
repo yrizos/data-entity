@@ -11,7 +11,7 @@ class Test extends Entity
     {
         return [
             'id'     => ['type' => 'integer'],
-            'date'   => ['type' => 'datetime', 'default' => new \DateTime()],
+            'date' => ['type' => 'date', 'default' => new \DateTime()],
             'string' => ['type' => 'string'],
             'email'  => ['type' => 'email'],
         ];
