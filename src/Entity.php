@@ -58,7 +58,7 @@ class Entity extends DataObject implements EntityInterface
             foreach ($definition as $key => $field) {
                 if (is_string($key) && is_array($field)) {
                     $type     = isset($field['type']) ? $field['type'] : 'raw';
-                    $type = $this->getType($type);
+                    $type     = $this->getType($type);
                     $default  = isset($field['default']) ? $field['default'] : null;
                     $required = isset($field['required']) && ($field['required'] !== false);
                     $field    = new Field($key, $type, $default, $required);
@@ -114,15 +114,19 @@ class Entity extends DataObject implements EntityInterface
     }
 
     /**
+     * @param string|null $context
+     *
      * @return array
      */
-    public function getData()
+    public function getFilteredData($context = null)
     {
-        $offsets = $this->keys();
-        $data    = [];
+        $data = $this->getRawData();
 
-        foreach ($offsets as $offset) {
-            $data[$offset] = $this->offsetGet($offset);
+        foreach ($data as $offset => $value) {
+            $field = $this->getField($offset);
+            $value = $field->filter($value, $context);
+
+            $data[$offset] = $value;
         }
 
         return $data;
@@ -131,16 +135,17 @@ class Entity extends DataObject implements EntityInterface
     /**
      * @return array
      */
+    public function getData()
+    {
+        return $this->getFilteredData();
+    }
+
+    /**
+     * @return array
+     */
     public function getRawData()
     {
-        $offsets = $this->keys();
-        $data    = parent::getData();
-
-        foreach ($offsets as $offset) {
-            if (!isset($data[$offset])) $data[$offset] = null;
-        }
-
-        return $data;
+        return parent::getData();
     }
 
     public static function fields()

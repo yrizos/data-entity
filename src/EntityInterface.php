@@ -6,6 +6,7 @@ use DataObject\DataObjectInterface;
 
 interface EntityInterface extends DataObjectInterface
 {
+
     public function getFields();
 
     public function getField($offset);
@@ -15,6 +16,8 @@ interface EntityInterface extends DataObjectInterface
     public function keys();
 
     public function getRawData();
+
+    public function getFilteredData($context = null);
 
     public static function fields();
 } 
