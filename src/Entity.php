@@ -6,6 +6,7 @@ use DataObject\DataObject;
 
 class Entity extends DataObject implements EntityInterface
 {
+
     /** @var bool */
     private $modified = false;
 
@@ -17,6 +18,7 @@ class Entity extends DataObject implements EntityInterface
 
     /**
      * @param string $offset
+     *
      * @return mixed
      */
     public function offsetGet($offset)
@@ -30,7 +32,8 @@ class Entity extends DataObject implements EntityInterface
 
     /**
      * @param string $offset
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @throws \InvalidArgumentException
      */
     public function offsetSet($offset, $value)
@@ -55,6 +58,7 @@ class Entity extends DataObject implements EntityInterface
             foreach ($definition as $key => $field) {
                 if (is_string($key) && is_array($field)) {
                     $type     = isset($field['type']) ? $field['type'] : 'raw';
+                    $type = $this->getType($type);
                     $default  = isset($field['default']) ? $field['default'] : null;
                     $required = isset($field['required']) && ($field['required'] !== false);
                     $field    = new Field($key, $type, $default, $required);
@@ -75,8 +79,14 @@ class Entity extends DataObject implements EntityInterface
         return $this->fields;
     }
 
+    protected function getType($type)
+    {
+        return Type::factory($type);
+    }
+
     /**
      * @param string $offset
+     *
      * @return FieldInterface
      */
     public function getField($offset)
