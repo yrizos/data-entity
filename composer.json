@@ -1,8 +1,8 @@
 {
-    "name": "yrizos/lib-bootstrap",
+    "name": "yrizos/data-entity",
     "license": "MIT",
     "type": "library",
-    "homepage": "https://github.com/yrizos/lib-bootstrap",
+    "homepage": "https://github.com/yrizos/data-entity",
 
     "authors": [
         {
@@ -13,12 +13,15 @@
     ],
 
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+
+        "yrizos/data-object": "0.1.*",
+        "ircmaxell/filterus": "dev-master"
     },
 
     "autoload": {
         "psr-4": {
-            "Namespace\\": "src"
+            "DataEntity\\": "src"
         }
     }
 }
