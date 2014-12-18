@@ -4,7 +4,7 @@ namespace DataEntity;
 
 use DataObject\DataObject;
 
-abstract class Entity extends DataObject implements EntityInterface
+class Entity extends DataObject implements EntityInterface
 {
     /** @var bool */
     private $modified = false;
@@ -133,5 +133,8 @@ abstract class Entity extends DataObject implements EntityInterface
         return $data;
     }
 
-    abstract static function fields();
+    public static function fields()
+    {
+        return [];
+    }
 } 
