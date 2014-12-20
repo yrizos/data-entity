@@ -32,7 +32,7 @@ class Entity extends DataObject implements EntityInterface
 
     /**
      * @param string $offset
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @throws \InvalidArgumentException
      */
@@ -121,15 +121,18 @@ class Entity extends DataObject implements EntityInterface
     public function getFilteredData($context = null)
     {
         $data = $this->getRawData();
-
-        foreach ($data as $offset => $value) {
-            $field = $this->getField($offset);
-            $value = $field->filter($value, $context);
-
-            $data[$offset] = $value;
-        }
+        foreach ($data as $offset => $value) $data[$offset] = $this->getFilteredValue($offset, $context);
 
         return $data;
+    }
+
+    public function getFilteredValue($offset, $context = null)
+    {
+        $field = $this->getField($offset);
+        $value = parent::offsetGet($offset);
+
+        return
+            null === $value ? $value : $field->filter($value, $context);
     }
 
     /**
